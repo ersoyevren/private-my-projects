@@ -66,9 +66,8 @@ Resources:
                 pip3 install flask
                 pip3 install flask_mysql
                 echo "${MyDBURI}" > /home/ec2-user/dbserver.endpoint
-                TOKEN="XXXXXXXXXXXXXXXXXX"
-                FOLDER="https://$TOKEN@raw.githubusercontent.com/serdarcw/phonebook_app/master"
-                curl -s --create-dirs -o "/home/ec2-user/templates/index.html" -L "$FOLDER"/templates/index.html
+                TOKEN="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"
+                FOLDER="https://TOKEN@raw.githubusercontent.com/ersoyevren/private-my-projects/master/Project-004-Phonebook-Application/"
                 curl -s --create-dirs -o "/home/ec2-user/templates/add-update.html" -L "$FOLDER"/templates/add-update.html
                 curl -s --create-dirs -o "/home/ec2-user/templates/delete.html" -L "$FOLDER"/templates/delete.html
                 curl -s --create-dirs -o "/home/ec2-user/app.py" -L "$FOLDER"/phonebook-app.py
@@ -108,7 +107,7 @@ Resources:
     Type: "AWS::AutoScaling::AutoScalingGroup"
     Properties:
       AvailabilityZones:
-        !GetAZs ""
+        !GetAZs ""  # Butun AZ leri sec
       DesiredCapacity: 2
       HealthCheckGracePeriod: 300
       HealthCheckType: ELB
@@ -135,16 +134,17 @@ Resources:
       AutoMinorVersionUpgrade: false
       BackupRetentionPeriod: 0
       DBInstanceClass: db.t2.micro
-      DBInstanceIdentifier: phonebook-app-db1
+      DBInstanceIdentifier: phonebook-app-db2
       DBName: clarusway_phonebook
       DBSecurityGroups: 
         - !Ref MyDBSecurityGroup
       Engine: MySQL
       EngineVersion: 8.0.19
       MasterUsername: admin
-      MasterUserPassword: Clarusway_1
+      MasterUserPassword: Serdar_1
       Port: 3306
       PubliclyAccessible: true
+
 
 Outputs:
   WebsiteURL:
